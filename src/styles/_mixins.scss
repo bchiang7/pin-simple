@@ -1,0 +1,42 @@
+@mixin outline {
+  outline: 1px solid red;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin background($imgpath, $position: center, $repeat: no-repeat, $size: contain) {
+  background: {
+    image: url($imgpath);
+    position: $position;
+    repeat: $repeat;
+    size: $size;
+  }
+}
+
+@mixin smallerThan768 {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin smallerThan480 {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin smallerThan360 {
+  @media screen and (max-width: 360px) {
+    @content;
+  }
+}
