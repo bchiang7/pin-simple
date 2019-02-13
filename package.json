@@ -10,7 +10,12 @@
   "homepage": "https://github.com/bchiang7/pin-simple#readme",
   "main": "server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "client:install": "cd client && yarn",
+    "client": "cd client && yarn start",
+    "server": "node server",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "start": "node server",
+    "heroku-postbuild": "cd client/ && yarn && yarn install --production && yarn build"
   },
   "lint-staged": {
     "*.js": [
