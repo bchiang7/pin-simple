@@ -40,21 +40,14 @@ const api = axios.create({
   headers,
 });
 
-/**
- * Get Current User's Profile
- * https://developers.pinterest.com/docs/api/users/
- */
-export const getUser = () => api.get(`/v1/me/?access_token=${token}`);
+const access_token = `?access_token=${token}`;
 
-/**
- * Get Current User's Profile
- * https://developers.pinterest.com/docs/api/users/
- */
-export const getUserBoards = () => api.get(`/v1/me/boards/?access_token=${token}`);
+export const getUser = () => api.get(`/v1/me/${access_token}&fields=id,username,first_name,last_name,counts,image`);
 
-// /**
-//  * Get User's Followed Artists
-//  * https://developer.spotify.com/documentation/web-api/reference/follow/get-followed/
-//  */
-// export const getFollowing = () =>
-//   axios.get('https://api.spotify.com/v1/me/following?type=artist', { headers });
+export const getUserBoards = () => api.get(`/v1/me/boards/${access_token}&fields=id,name,counts,image`);
+
+export const getBoard = id => api.get(`/v1/boards/${id}/${access_token}&fields=id,name,counts,image`);
+
+export const getBoardPins = id => api.get(`/v1/boards/${id}/pins/${access_token}&fields=id,link,url,board,image`);
+
+export const getPin = id => api.get(`/v1/pins/${id}/${access_token}`);

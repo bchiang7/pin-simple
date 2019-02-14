@@ -18,3 +18,7 @@ export const catchErrors = fn => {
     });
   };
 };
+
+export const cached = key => {
+  return window.localStorage.getItem(key);
+};

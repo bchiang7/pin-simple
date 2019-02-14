@@ -16,6 +16,7 @@ export default {
 .login {
   @include flex-center;
   height: 100vh;
+  max-height: 100vh;
 
   a {
     background-color: $red;
