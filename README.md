@@ -1,4 +1,4 @@
-# PinSimple
+# Pin Simple
 
 ## Project setup
 

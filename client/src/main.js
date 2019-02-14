@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
-import { Boards, Board, Pin } from './components';
+import { Boards, Board, Pin, NotFound } from './components';
 
 import VueRouter from 'vue-router';
 
@@ -9,7 +9,10 @@ Vue.use(VueRouter);
 Vue.config.productionTip = false;
 
 const routes = [
-  // { path: '*', component: NotFound },
+  // {
+  //   path: '*',
+  //   component: NotFound,
+  // },
   {
     path: '/',
     redirect: '/boards',

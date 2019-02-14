@@ -1,0 +1,45 @@
+{
+  "data": {
+    "data": {
+      "description": "",
+      "privacy": "public",
+      "url": "https://www.pinterest.com/brittanychiang/home/",
+      "image": {
+        "60x60": {
+          "url": "https://i.pinimg.com/60x60/fe/f6/01/fef6011dc74515ceafe9cbaa97d34629.jpg",
+          "width": 60,
+          "height": 60
+        }
+      },
+      "counts": {
+        "pins": 57,
+        "collaborators": 0,
+        "followers": 20
+      },
+      "id": "484559309847013158",
+      "name": "Home"
+    }
+  },
+  "status": 200,
+  "statusText": "OK",
+  "headers": {
+    "content-type": "application/json",
+    "cache-control": "private"
+  },
+  "config": {
+    "transformRequest": {},
+    "transformResponse": {},
+    "timeout": 0,
+    "xsrfCookieName": "XSRF-TOKEN",
+    "xsrfHeaderName": "X-XSRF-TOKEN",
+    "maxContentLength": -1,
+    "headers": {
+      "Accept": "application/json, text/plain, */*",
+      "Authorization": "Bearer AifWi_--SH9kI113EBpkInht7IQwFYNI19cqbuFFnqI_JYC4gwa5gDAAAMVERZ7CHDKArxkAAAAA"
+    },
+    "method": "get",
+    "baseURL": "https://api.pinterest.com",
+    "url": "https://api.pinterest.com/v1/boards/484559309847013158/?access_token=AifWi_--SH9kI113EBpkInht7IQwFYNI19cqbuFFnqI_JYC4gwa5gDAAAMVERZ7CHDKArxkAAAAA&fields=id,name,description,counts,image,privacy,url"
+  },
+  "request": {}
+}

@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <a href="https://6a2d7f89.ngrok.io/login">
+    <a href="https://localhost:8888/login">
       Login to Pinterest
     </a>
   </div>
@@ -21,8 +21,6 @@ export default {
   a {
     background-color: $red;
     color: $white;
-    padding: 8px 16px;
-    border-radius: $radius;
     font-weight: 700;
     font-size: $fz-md;
 

@@ -1,26 +1,26 @@
 <template>
-  <main>
-    <div v-if="user" class="user">
+  <div>
+    <div v-if="user" class="container user">
       <header>
+        <!-- <img :src="user.image['60x60'].url" alt="user image"> -->
         <h1>
-          <a v-bind:href="user.url" target="_blank">
-            {{ user.first_name }} {{ user.last_name }}
-          </a>
+          {{ user.first_name }} {{ user.last_name }}
         </h1>
+        <!-- <p>@{{ user.username }}</p> -->
       </header>
       <main>
-        <ul>
-          <li v-for="(board, index) in boards" :key="index">
+        <ul class="grid">
+          <li
+            v-for="(board, index) in boards"
+            :key="index"
+            class="board"
+          >
             <router-link :to="{ name: 'board', params: { id: board.id } }">
-              <h2>
-                {{ board.name }}
-              </h2>
-              <p>
-                {{ board.description }}
-              </p>
-              <p>
-                {{ board.counts }}
-              </p>
+              <img :src="board.image['60x60'].url" alt="board image">
+              <div class="board__details">
+                <h2>{{ board.name }}</h2>
+                <p>{{ board.counts.pins }} Pins</p>
+              </div>
             </router-link>
           </li>
         </ul>
@@ -28,11 +28,11 @@
     </div>
 
     <Login v-else />
-  </main>
+  </div>
 </template>
 
 <script>
-import { catchErrors, cached } from '../utils';
+import { catchErrors, cache, cached } from '../utils';
 import { token, getUser, getUserBoards } from '../pinterest';
 import { Login } from '@/components';
 
@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       token: '',
-      user: {},
+      user: null,
       boards: [],
     };
   },
@@ -59,18 +59,22 @@ export default {
       this.user = JSON.parse(cachedUser);
       this.boards = JSON.parse(cachedBoards);
     } else {
-      catchErrors(this.getData());
+      console.warn('Get user and user boards data');
+
+      if (this.token) {
+        // catchErrors(this.getData());
+      }
     }
   },
   methods: {
     async getData() {
       const user = await getUser();
       this.user = user.data.data;
-      window.localStorage.setItem('pinterest_user', JSON.stringify(this.user));
+      cache('pinterest_user', JSON.stringify(this.user));
 
       const boards = await getUserBoards();
       this.boards = boards.data.data;
-      window.localStorage.setItem('pinterest_boards', JSON.stringify(this.boards));
+      cache('pinterest_boards', JSON.stringify(this.boards));
     },
   },
 };
@@ -78,31 +82,21 @@ export default {
 
 <style lang="scss" scoped>
 .user {
-  padding: 50px;
-
   header {
-    margin-bottom: 100px;
+    img {
+      max-width: 60px;
+    }
   }
 
-  h1 {
-    text-align: center;
-  }
-
-  ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 30px;
-    width: 100%;
-
-    li {
+  .grid {
+    .board {
       a {
-        width: 100%;
-        padding: 20px;
-        border-radius: $radius;
+        display: flex;
+        align-items: center;
 
-        &:hover,
-        &:focus {
-          background: $grey;
+        img {
+          margin-right: 20px;
+          max-width: 60px;
         }
       }
     }

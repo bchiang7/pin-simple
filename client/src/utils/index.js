@@ -19,6 +19,8 @@ export const catchErrors = fn => {
   };
 };
 
-export const cached = key => {
-  return window.localStorage.getItem(key);
-};
+// Add something to localstorage
+export const cache = (key, value) => window.localStorage.setItem(key, value);
+
+// Pull something off of localstorage
+export const cached = key => window.localStorage.getItem(key);

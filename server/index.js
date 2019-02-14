@@ -1,5 +1,7 @@
 // https://developers.pinterest.com/docs/api/overview/
 
+require('dotenv').config();
+
 const APP_ID = process.env.APP_ID;
 const APP_SECRET = process.env.APP_SECRET;
 const localhost = process.env.LOCAL;
@@ -20,7 +22,6 @@ const cookieParser = require('cookie-parser');
 const queryString = require('query-string');
 const request = require('request');
 
-require('dotenv').config();
 
 const certOptions = {
   key: fs.readFileSync(path.resolve('server/ssl/server.key')),
@@ -31,8 +32,8 @@ const app = express();
 
 const server = https.createServer(certOptions, app).listen(PORT, function() {
   if (process.env.NODE_ENV !== 'production') {
-    console.log('Server up and running...🏃🏃🏻');
-    console.log(`Listening on http://localhost:${PORT}/ \n`);
+    console.log('Server up and running...🏃🏃🏻🏃‍');
+    console.log(`Listening on https://localhost:${PORT}/ \n`);
   }
 });
 
