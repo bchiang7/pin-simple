@@ -15,12 +15,13 @@ body {
 }
 
 body {
-  overflow-x: hidden;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  margin: 0;
   font-family: $ff-base;
   font-size: $fz-base;
-  background-color: #f0f0f0;
+  background-color: $white;
   color: $black;
   line-height: 1.5;
 }
@@ -57,7 +58,7 @@ textarea {
   font-size: $fz-base;
   background-color: transparent;
   &::placeholder {
-    font-family: $ff-product;
+    font-family: $ff-base;
   }
 }
 

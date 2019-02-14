@@ -1,28 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <User v-if="token" />
+    <Login v-else />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import { token } from './pinterest';
+
+import Login from './components/Login.vue';
+import User from './components/User.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    Login,
+    User,
+  },
+  data() {
+    return {
+      token: '',
+    };
+  },
+  created() {
+    this.token = token;
   },
 };
 </script>
 
-<style>
+<style lang="scss">
+@import './styles/main.scss';
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  padding: 50px;
 }
 </style>
