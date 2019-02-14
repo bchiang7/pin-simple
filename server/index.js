@@ -1,13 +1,5 @@
 // https://developers.pinterest.com/docs/api/overview/
 
-const express = require('express');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const queryString = require('query-string');
-const request = require('request');
-
-require('dotenv').config();
-
 const APP_ID = process.env.APP_ID;
 const APP_SECRET = process.env.APP_SECRET;
 const localhost = process.env.LOCAL;
@@ -20,16 +12,31 @@ if (process.env.NODE_ENV !== 'production') {
   FRONTEND_URI = 'http://localhost:8080';
 }
 
+const path = require('path');
+const fs = require('fs');
+const express = require('express');
+const https = require('https');const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const queryString = require('query-string');
+const request = require('request');
+
+require('dotenv').config();
+
+const certOptions = {
+  key: fs.readFileSync(path.resolve('server/ssl/server.key')),
+  cert: fs.readFileSync(path.resolve('server/ssl/server.crt'))
+}
+
 const app = express();
 
-app.use(cors()).use(cookieParser());
-
-app.listen(PORT, function() {
+const server = https.createServer(certOptions, app).listen(PORT, function() {
   if (process.env.NODE_ENV !== 'production') {
     console.log('Server up and running...🏃🏃🏻');
     console.log(`Listening on http://localhost:${PORT}/ \n`);
   }
 });
+
+app.use(cors()).use(cookieParser());
 
 app.get('/', function(req, res) {
   res.send('Hi from the server');
