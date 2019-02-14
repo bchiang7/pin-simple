@@ -110,7 +110,7 @@ export default {
       const prevIndex = this.currentPindex - 1;
       this.activePin = this.pins[prevIndex];
 
-      const pinIndex = this.pins.map(p => p.id).indexOf(this.pins[prevIndex].id);
+      const pinIndex = this.pins.findIndex(p => p.id === this.pins[prevIndex].id);
       this.currentPindex = pinIndex;
     },
 
@@ -123,7 +123,7 @@ export default {
       const nextIndex = this.currentPindex + 1;
       this.activePin = this.pins[nextIndex];
 
-      const pinIndex = this.pins.map(p => p.id).indexOf(this.pins[nextIndex].id);
+      const pinIndex = this.pins.findIndex(p => p.id === this.pins[nextIndex].id);
       this.currentPindex = pinIndex;
     },
   },
