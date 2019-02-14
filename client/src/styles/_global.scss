@@ -24,6 +24,10 @@ body {
   background-color: $white;
   color: $black;
   line-height: 1.5;
+
+  &.fixed {
+    overflow-y: hidden;
+  }
 }
 
 h1,

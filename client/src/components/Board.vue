@@ -22,6 +22,7 @@
           :key="index"
           v-bind:style="{ background: pin.color }"
           @click="selectPin(pin)"
+          class="pin"
         >
           <img :src="pin.image.original.url" alt="pin image">
         </li>
@@ -33,8 +34,8 @@
 </template>
 
 <script>
-import { catchErrors, cache, cached } from '../utils';
-import { getBoard, getBoardPins } from '../pinterest';
+import { catchErrors, cache, cached } from '@/utils';
+import { getBoard, getBoardPins } from '@/pinterest';
 import Pin from './Pin';
 import { External, BackArrow } from '@/components/icons';
 import { EventBus } from '@/EventBus';
@@ -51,6 +52,7 @@ export default {
       board: null,
       pins: [],
       activePin: null,
+      currentPindex: null,
     };
   },
   mounted() {
@@ -83,19 +85,46 @@ export default {
       cache('pinterest_pins', JSON.stringify(this.pins));
       // console.log(pins);
     },
+
     selectPin(pin) {
       this.activePin = pin;
+
+      const pinIndex = this.pins.map(p => p.id).indexOf(pin.id);
+      this.currentPindex = pinIndex;
+
+      document.body.classList.add('fixed');
     },
+
     closePin() {
       this.activePin = null;
+      this.currentPindex = null;
+
+      document.body.classList.remove('fixed');
     },
+
     prevPin() {
-      console.log('prev');
+      if (this.currentPindex < 1) {
+        return;
+      }
 
+      const prevIndex = this.currentPindex - 1;
+      this.activePin = this.pins[prevIndex];
+
+      const pinIndex = this.pins.map(p => p.id).indexOf(this.pins[prevIndex].id);
+      this.currentPindex = pinIndex;
     },
-    nextPin() {
-      console.log('next');
 
+    nextPin() {
+      // TODO: fix this to account for pagination, only 25 pins showing but 57 total
+      if (this.currentPindex > this.pins.length + 1) {
+        return;
+      }
+
+      const nextIndex = this.currentPindex + 1;
+      this.activePin = this.pins[nextIndex];
+
+      const pinIndex = this.pins.map(p => p.id).indexOf(this.pins[nextIndex].id);
+      this.currentPindex = pinIndex;
     },
   },
 };

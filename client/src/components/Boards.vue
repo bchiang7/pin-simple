@@ -2,11 +2,9 @@
   <div>
     <div v-if="user" class="container user">
       <header>
-        <!-- <img :src="user.image['60x60'].url" alt="user image"> -->
         <h1>
           {{ user.first_name }} {{ user.last_name }}
         </h1>
-        <!-- <p>@{{ user.username }}</p> -->
       </header>
       <main>
         <ul class="grid">
@@ -32,8 +30,8 @@
 </template>
 
 <script>
-import { catchErrors, cache, cached } from '../utils';
-import { token, getUser, getUserBoards } from '../pinterest';
+import { catchErrors, cache, cached } from '@/utils';
+import { token, getUser, getUserBoards } from '@/pinterest';
 import { Login } from '@/components';
 
 export default {

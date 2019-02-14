@@ -1,5 +1,5 @@
 <template>
-  <div class="pin">
+  <div class="pinModal">
     <button @click="prev">
       <ChevronLeft />
     </button>
@@ -65,10 +65,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.pin {
+.pinModal {
   @include flex-center;
   justify-content: space-around;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
