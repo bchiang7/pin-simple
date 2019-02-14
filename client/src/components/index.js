@@ -1,7 +1,7 @@
-import Login from './Login.vue';
-import Boards from './Boards.vue';
-import Board from './Board.vue';
-import Pin from './Pin.vue';
-import NotFound from './NotFound.vue';
+import Login from './Login';
+import Boards from './Boards';
+import Board from './Board';
+import Pin from './Pin';
+import NotFound from './NotFound';
 
 export { Login, Boards, Board, Pin, NotFound };

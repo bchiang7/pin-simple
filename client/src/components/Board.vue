@@ -3,19 +3,16 @@
     <header>
       <h1>{{ board.name }}</h1>
       <p>{{ board.counts.pins }} Pins</p>
-      <a :href="board.url">
+      <a :href="board.url" target="_blank">
         View on Pinterest
-        <svg
-          class="gUZ pBj"
-          height="15"
-          width="15"
-          viewBox="0 0 24 24"
-          aria-label="Visit home4rt.com"
-          role="img"
-        >
-          <path d="M4.9283,1 C3.6273,1 2.5713,2.054 2.5713,3.357 C2.5713,4.66 3.6273,5.714 4.9283,5.714 L14.9523,5.714 L1.6893,18.976 C0.7703,19.896 0.7703,21.389 1.6893,22.31 C2.1503,22.771 2.7533,23 3.3573,23 C3.9603,23 4.5633,22.771 5.0243,22.31 L18.2853,9.047 L18.2853,19.071 C18.2853,20.374 19.3413,21.429 20.6433,21.429 C21.9443,21.429 23.0003,20.374 23.0003,19.071 L23.0003,1 L4.9283,1 Z" />
-        </svg>
+        <External />
       </a>
+      <div class="back">
+        <router-link to="/boards">
+          <BackArrow />
+          <span>Back to Boards</span>
+        </router-link>
+      </div>
     </header>
 
     <main>
@@ -24,24 +21,36 @@
           v-for="(pin, index) in pins"
           :key="index"
           v-bind:style="{ background: pin.color }"
+          @click="selectPin(pin)"
         >
           <img :src="pin.image.original.url" alt="pin image">
         </li>
       </ul>
     </main>
+
+    <Pin v-if="activePin" :pin="activePin" />
   </div>
 </template>
 
 <script>
 import { catchErrors, cache, cached } from '../utils';
 import { getBoard, getBoardPins } from '../pinterest';
+import Pin from './Pin';
+import { External, BackArrow } from '@/components/icons';
+import { EventBus } from '@/EventBus';
 
 export default {
-  name: 'User',
+  name: 'Board',
+  components: {
+    External,
+    BackArrow,
+    Pin,
+  },
   data() {
     return {
       board: null,
       pins: [],
+      activePin: null,
     };
   },
   mounted() {
@@ -55,6 +64,10 @@ export default {
       console.warn(`Get board data for ${this.$route.params.id}`);
       // catchErrors(this.getData());
     }
+
+    EventBus.$on('close-pin', () => this.closePin());
+    EventBus.$on('prev-pin', () => this.prevPin());
+    EventBus.$on('next-pin', () => this.nextPin());
   },
   methods: {
     async getData() {
@@ -70,12 +83,39 @@ export default {
       cache('pinterest_pins', JSON.stringify(this.pins));
       // console.log(pins);
     },
+    selectPin(pin) {
+      this.activePin = pin;
+    },
+    closePin() {
+      this.activePin = null;
+    },
+    prevPin() {
+      console.log('prev');
+
+    },
+    nextPin() {
+      console.log('next');
+
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .board {
+  .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 20px;
+    a {
+      margin: 0;
+      svg {
+        margin-right: 10px;
+        margin-left: 0;
+      }
+    }
+  }
   li {
     @include flex-center;
     padding: 10px;
@@ -85,7 +125,6 @@ export default {
 
     &:hover,
     &:focus {
-      background: $grey;
       opacity: 0.8;
     }
   }
