@@ -1,7 +1,9 @@
 <template>
   <div v-if="user" class="user">
     <h1>
-      <a v-bind:href="user.url" target="_blank"> {{ user.first_name }} {{ user.last_name }} </a>
+      <a v-bind:href="user.url" target="_blank">
+        {{ user.first_name }} {{ user.last_name }}
+      </a>
     </h1>
   </div>
 </template>
@@ -28,7 +30,7 @@ export default {
 
       const boards = await getUserBoards();
       this.boards = boards.data;
-      console.log(this.boards);
+      // console.log(this.boards);
     },
   },
 };

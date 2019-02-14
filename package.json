@@ -20,17 +20,6 @@
     "start": "node server",
     "heroku-postbuild": "cd client/ && yarn && yarn install --production && yarn build"
   },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "dependencies": {
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
