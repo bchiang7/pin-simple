@@ -17,6 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
 const path = require('path');
 const fs = require('fs');
 const express = require('express');
+const serveStatic = require("serve-static")
 const https = require('https');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -30,6 +31,11 @@ const certOptions = {
 }
 
 const app = express();
+
+app
+  .use(serveStatic(path.join(__dirname, 'client/dist')))
+  .use(cors())
+  .use(cookieParser());
 
 if (process.env.NODE_ENV !== 'production') {
   const server = https.createServer(certOptions, app).listen(PORT, function() {
@@ -46,8 +52,6 @@ if (process.env.NODE_ENV !== 'production') {
     }
   });
 }
-
-app.use(cors()).use(cookieParser());
 
 app.get('/', function(req, res) {
   res.send('Hi from the server');
