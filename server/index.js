@@ -26,8 +26,11 @@ const request = require('request');
 
 const app = express();
 
+// Priority serve any static files.
+app.use(express.static(path.resolve(__dirname, '../client/dist')));
+
 app
-  .use(serveStatic(path.join(__dirname, 'client/dist')))
+  .use(express.static(`../${__dirname}/client/dist`))
   .use(cors())
   .use(cookieParser());
 
