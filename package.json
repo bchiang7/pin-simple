@@ -26,8 +26,7 @@
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "query-string": "^6.2.0",
-    "request": "^2.88.0",
-    "serve-static": "^1.13.2"
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "@upstatement/prettier-config": "^0.3.0",

@@ -58,6 +58,7 @@ export default {
     };
   },
   mounted() {
+    // Remove the caching logic once app gets approved
     const cachedBoard = cached('pinterest_board');
     const cachedPins = cached('pinterest_pins');
 
@@ -79,10 +80,12 @@ export default {
 
       const board = await getBoard(boardID);
       this.board = board.data.data;
+      // Remove this line once app gets approved
       cache('pinterest_board', JSON.stringify(this.board));
 
       const pins = await getBoardPins(boardID);
       this.pins = pins.data.data;
+      // Remove this line once app gets approved
       cache('pinterest_pins', JSON.stringify(this.pins));
     },
 

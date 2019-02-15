@@ -17,7 +17,6 @@ if (process.env.NODE_ENV !== 'production') {
 const path = require('path');
 const fs = require('fs');
 const express = require('express');
-const serveStatic = require("serve-static")
 const https = require('https');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -26,11 +25,8 @@ const request = require('request');
 
 const app = express();
 
-// Priority serve any static files.
-app.use(express.static(path.resolve(__dirname, '../client/dist')));
-
 app
-  .use(express.static(`../${__dirname}/client/dist`))
+  .use(express.static(path.resolve(__dirname, '../client/dist')));
   .use(cors())
   .use(cookieParser());
 
@@ -40,7 +36,7 @@ if (process.env.NODE_ENV !== 'production') {
     cert: fs.readFileSync(path.resolve('server/ssl/server.crt'))
   }
 
-  const server = https.createServer(certOptions, app).listen(PORT, function() {
+  https.createServer(certOptions, app).listen(PORT, function() {
     if (process.env.NODE_ENV !== 'production') {
       console.log('Server up and running...🏃🏃🏻🏃‍');
       console.log(`Listening on https://localhost:${PORT}/ \n`);
