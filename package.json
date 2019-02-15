@@ -13,12 +13,12 @@
   },
   "main": "server/index.js",
   "scripts": {
-    "client:install": "cd client && yarn",
+    "client:install": "cd client && npm install",
     "client": "cd client && npm run serve",
     "server": "node server",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "start": "node server",
-    "heroku-postbuild": "cd client/ && yarn && yarn install --production && yarn build"
+    "heroku-postbuild": "cd client/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
     "cookie-parser": "^1.4.4",
@@ -26,7 +26,8 @@
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "query-string": "^6.2.0",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "serve-static": "^1.13.2"
   },
   "devDependencies": {
     "@upstatement/prettier-config": "^0.3.0",
