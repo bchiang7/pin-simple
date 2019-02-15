@@ -23,3 +23,5 @@ yarn-error.log*
 
 server/ssl/*
 !server/ssl/.gitkeep
+
+*/dist
