@@ -31,12 +31,21 @@ const certOptions = {
 
 const app = express();
 
-const server = https.createServer(certOptions, app).listen(PORT, function() {
-  if (process.env.NODE_ENV !== 'production') {
-    console.log('Server up and running...🏃🏃🏻🏃‍');
-    console.log(`Listening on https://localhost:${PORT}/ \n`);
-  }
-});
+if (process.env.NODE_ENV !== 'production') {
+  const server = https.createServer(certOptions, app).listen(PORT, function() {
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('Server up and running...🏃🏃🏻🏃‍');
+      console.log(`Listening on https://localhost:${PORT}/ \n`);
+    }
+  });
+} else {
+  app.listen(PORT, function() {
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('Server up and running...🏃🏃🏻🏃‍');
+      console.log(`Listening on https://localhost:${PORT}/ \n`);
+    }
+  });
+}
 
 app.use(cors()).use(cookieParser());
 
