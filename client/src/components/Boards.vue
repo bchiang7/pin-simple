@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="user" class="container user">
+    <div v-if="token && user" class="container user">
       <button @click="logoutUser" class="logout">
         Logout
       </button>

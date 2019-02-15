@@ -1,6 +1,6 @@
 <template>
   <Transition name="modal">
-    <div class="pinModal">
+    <div v-if="pin" class="pinModal">
       <button @click="prev">
         <ChevronLeft />
       </button>

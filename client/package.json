@@ -1,5 +1,6 @@
 {
   "name": "pin-simple",
+  "description": "Pinterest, but just the pictures",
   "version": "0.1.0",
   "private": true,
   "main": "babel.config.js",
@@ -14,6 +15,9 @@
     "url": "https://github.com/bchiang7/pin-simple/issues"
   },
   "homepage": "https://github.com/bchiang7/pin-simple#readme",
+  "engines": {
+    "node": "10.13.0"
+  },
   "postcss": {
     "plugins": {
       "autoprefixer": {}
