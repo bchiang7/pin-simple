@@ -24,12 +24,6 @@ const cookieParser = require('cookie-parser');
 const queryString = require('query-string');
 const request = require('request');
 
-
-const certOptions = {
-  key: fs.readFileSync(path.resolve('server/ssl/server.key')),
-  cert: fs.readFileSync(path.resolve('server/ssl/server.crt'))
-}
-
 const app = express();
 
 app
@@ -38,6 +32,11 @@ app
   .use(cookieParser());
 
 if (process.env.NODE_ENV !== 'production') {
+  const certOptions = {
+    key: fs.readFileSync(path.resolve('server/ssl/server.key')),
+    cert: fs.readFileSync(path.resolve('server/ssl/server.crt'))
+  }
+
   const server = https.createServer(certOptions, app).listen(PORT, function() {
     if (process.env.NODE_ENV !== 'production') {
       console.log('Server up and running...🏃🏃🏻🏃‍');
