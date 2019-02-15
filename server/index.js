@@ -17,7 +17,8 @@ if (process.env.NODE_ENV !== 'production') {
 const path = require('path');
 const fs = require('fs');
 const express = require('express');
-const https = require('https');const cors = require('cors');
+const https = require('https');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const queryString = require('query-string');
 const request = require('request');
