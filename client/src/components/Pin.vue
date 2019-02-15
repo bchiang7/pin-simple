@@ -1,19 +1,21 @@
 <template>
-  <div class="pinModal">
-    <button @click="prev">
-      <ChevronLeft />
-    </button>
+  <Transition name="modal">
+    <div class="pinModal">
+      <button @click="prev">
+        <ChevronLeft />
+      </button>
 
-    <img :src="pin.image.original.url" alt="active pin">
+      <img :src="pin.image.original.url" alt="active pin">
 
-    <button @click="next">
-      <ChevronRight />
-    </button>
+      <button @click="next">
+        <ChevronRight />
+      </button>
 
-    <button @click="close" class="close">
-      <Close />
-    </button>
-  </div>
+      <button @click="close" class="close">
+        <Close />
+      </button>
+    </div>
+  </Transition>
 </template>
 
 <script>
@@ -98,7 +100,8 @@ export default {
   }
 
   img {
-    max-width: 500px;
+    width: auto;
+    max-height: 800px;
   }
 
   .close {
@@ -109,8 +112,25 @@ export default {
     z-index: 2;
 
     svg {
+      fill: rgba(255,255,255,0.4);
       max-width: 20px;
     }
   }
+}
+
+
+.modal-enter,
+.modal-leave-active {
+  opacity: 0;
+}
+.modal-enter,
+.modal-leave-to {
+  img {
+    transform: scale(0.75);
+  }
+}
+.modal-enter-active,
+.modal-leave-active {
+  transition: $transition;
 }
 </style>

@@ -16,6 +16,7 @@ export const getAccessToken = () => {
 
   // If there is no access token in local storage, set it and return `access_token` from params
   if (!localAccessToken || localAccessToken === 'undefined') {
+    console.log(localAccessToken);
     setLocalAccessToken(access_token);
     return access_token;
   }
@@ -40,7 +41,7 @@ const api = axios.create({
   headers,
 });
 
-const access_token = `?access_token=${token}`;
+const access_token = `?access_token=${token}&limit=100`;
 
 export const getUser = () => api.get(`/v1/me/${access_token}&fields=id,first_name,last_name,username,counts,image`);
 

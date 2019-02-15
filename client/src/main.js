@@ -9,10 +9,10 @@ Vue.use(VueRouter);
 Vue.config.productionTip = false;
 
 const routes = [
-  // {
-  //   path: '*',
-  //   component: NotFound,
-  // },
+  {
+    path: '*',
+    component: Boards,
+  },
   {
     path: '/',
     redirect: '/boards',

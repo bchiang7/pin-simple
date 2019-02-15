@@ -1,6 +1,10 @@
 <template>
   <div>
     <div v-if="user" class="container user">
+      <button @click="logoutUser" class="logout">
+        Logout
+      </button>
+
       <header>
         <img :src="user.image['60x60'].url" alt="user image">
         <div>
@@ -40,7 +44,7 @@
 
 <script>
 import { catchErrors, cache, cached } from '@/utils';
-import { token, getUser, getUserBoards } from '@/pinterest';
+import { token, getUser, getUserBoards, logout } from '@/pinterest';
 import { Login } from '@/components';
 
 export default {
@@ -66,7 +70,7 @@ export default {
       this.user = JSON.parse(cachedUser);
       this.boards = JSON.parse(cachedBoards);
     } else {
-      console.warn('Get user and user boards data');
+      console.warn('Getting user data');
 
       if (this.token) {
         catchErrors(this.getData());
@@ -83,19 +87,34 @@ export default {
       this.boards = boards.data.data;
       cache('pinterest_boards', JSON.stringify(this.boards));
     },
+    logoutUser() {
+      logout();
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.logout {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+  background-color: $grey;
+  font-size: $fz-sm;
+  border-radius: $radius;
+  padding: 10px 15px;
+
+  &:hover,
+  &:focus {
+    background-color: $medium-grey;
+  }
+}
+
 .user {
   header {
     display: flex;
     align-items: center;
-
-    h1 {
-      margin: 0;
-    }
 
     img {
       max-width: 70px;
@@ -105,6 +124,7 @@ export default {
 
     p {
       font-size: $fz-sm;
+      margin: 0;
     }
   }
 

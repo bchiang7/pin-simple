@@ -65,7 +65,7 @@ export default {
       this.board = JSON.parse(cachedBoard);
       this.pins = JSON.parse(cachedPins);
     } else {
-      console.warn(`Get board data for ${this.$route.params.id}`);
+      console.warn(`Getting board data for ${this.$route.params.id}`);
       catchErrors(this.getData());
     }
 
@@ -80,12 +80,10 @@ export default {
       const board = await getBoard(boardID);
       this.board = board.data.data;
       cache('pinterest_board', JSON.stringify(this.board));
-      // console.log(board);
 
       const pins = await getBoardPins(boardID);
       this.pins = pins.data.data;
       cache('pinterest_pins', JSON.stringify(this.pins));
-      // console.log(pins);
     },
 
     selectPin(pin) {
@@ -117,8 +115,7 @@ export default {
     },
 
     nextPin() {
-      // TODO: fix this to account for pagination, only 25 pins showing but 57 total
-      if (this.currentPindex > this.pins.length + 1) {
+      if (this.currentPindex === this.pins.length - 1) {
         return;
       }
 
