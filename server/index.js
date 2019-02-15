@@ -26,7 +26,7 @@ const request = require('request');
 const app = express();
 
 app
-  .use(express.static(path.resolve(__dirname, '../client/dist')));
+  .use(express.static(path.resolve(__dirname, '../client/dist')))
   .use(cors())
   .use(cookieParser());
 

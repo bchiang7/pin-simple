@@ -8,7 +8,7 @@
 
 1. Follow the "Create your app" section of the [Pinterest API overview](https://developers.pinterest.com/docs/api/overview/)
 
-1. Add https://localhost:8888/callback as a Redirect URI in your Pinterest app
+1. Add `https://localhost:8888/callback` as a Redirect URI in your Pinterest app
 
 1. Install dependencies
 
