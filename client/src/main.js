@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
-import { Boards, Board, Pin, NotFound } from './components';
+import { Boards, Board, Pin } from './components';
 
 import VueRouter from 'vue-router';
 

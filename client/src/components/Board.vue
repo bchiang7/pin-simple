@@ -3,14 +3,16 @@
     <header>
       <h1>{{ board.name }}</h1>
       <p>{{ board.counts.pins }} Pins</p>
-      <a :href="board.url" target="_blank">
-        View on Pinterest
-        <External />
-      </a>
+      <div class="external">
+        <a :href="board.url" target="_blank">
+          View on Pinterest
+          <External />
+        </a>
+      </div>
       <div class="back">
         <router-link to="/boards">
           <BackArrow />
-          <span>Back to Boards</span>
+          <span>Back</span>
         </router-link>
       </div>
     </header>
@@ -64,7 +66,7 @@ export default {
       this.pins = JSON.parse(cachedPins);
     } else {
       console.warn(`Get board data for ${this.$route.params.id}`);
-      // catchErrors(this.getData());
+      catchErrors(this.getData());
     }
 
     EventBus.$on('close-pin', () => this.closePin());
@@ -132,19 +134,34 @@ export default {
 
 <style lang="scss" scoped>
 .board {
+  header {
+    @include flex-center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .external {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+
+    svg {
+      margin-left: 8px;
+    }
+  }
+
   .back {
     position: absolute;
     top: 0;
     left: 0;
     margin: 20px;
-    a {
-      margin: 0;
-      svg {
-        margin-right: 10px;
-        margin-left: 0;
-      }
+
+    svg {
+      margin-right: 8px;
     }
   }
+
   li {
     @include flex-center;
     padding: 10px;

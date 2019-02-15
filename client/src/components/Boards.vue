@@ -2,9 +2,18 @@
   <div>
     <div v-if="user" class="container user">
       <header>
-        <h1>
-          {{ user.first_name }} {{ user.last_name }}
-        </h1>
+        <img :src="user.image['60x60'].url" alt="user image">
+        <div>
+          <h1>
+            {{ user.first_name }} {{ user.last_name }}
+          </h1>
+          <p>
+            <span>{{ user.counts.followers }} Followers &middot;&nbsp;</span>
+            <span>{{ user.counts.following }} Following &middot;&nbsp;</span>
+            <span>{{ user.counts.boards }} Boards &middot;&nbsp;</span>
+            <span>{{ user.counts.pins }} Pins</span>
+          </p>
+        </div>
       </header>
       <main>
         <ul class="grid">
@@ -60,7 +69,7 @@ export default {
       console.warn('Get user and user boards data');
 
       if (this.token) {
-        // catchErrors(this.getData());
+        catchErrors(this.getData());
       }
     }
   },
@@ -81,8 +90,21 @@ export default {
 <style lang="scss" scoped>
 .user {
   header {
+    display: flex;
+    align-items: center;
+
+    h1 {
+      margin: 0;
+    }
+
     img {
-      max-width: 60px;
+      max-width: 70px;
+      border-radius: 100%;
+      margin-right: 20px;
+    }
+
+    p {
+      font-size: $fz-sm;
     }
   }
 
