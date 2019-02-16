@@ -146,6 +146,12 @@ export default {
     right: 0;
     margin: 20px;
 
+    a {
+      @include smallerThan480 {
+        margin-right: -15px;
+      }
+    }
+
     svg {
       margin-left: 8px;
     }
@@ -156,6 +162,12 @@ export default {
     top: 0;
     left: 0;
     margin: 20px;
+
+    a {
+      @include smallerThan480 {
+        margin-left: -15px;
+      }
+    }
 
     svg {
       margin-right: 8px;

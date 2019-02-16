@@ -1,13 +1,15 @@
 <template>
   <Transition name="modal">
     <div v-if="pin" class="pinModal">
-      <button @click="prev">
+      <div class="img-container">
+        <img :src="pin.image.original.url" alt="active pin">
+      </div>
+
+      <button @click="prev" class="arrow prev">
         <ChevronLeft />
       </button>
 
-      <img :src="pin.image.original.url" alt="active pin">
-
-      <button @click="next">
+      <button @click="next" class="arrow next">
         <ChevronRight />
       </button>
 
@@ -92,6 +94,18 @@ export default {
       }
     }
 
+    &.arrow {
+      position: absolute;
+
+      &.prev {
+        left: 0;
+      }
+
+      &.next {
+        right: 0;
+      }
+    }
+
     svg {
       max-width: 50px;
       fill: rgba(255,255,255,0.2);
@@ -99,9 +113,17 @@ export default {
     }
   }
 
+  .img-container {
+    @include flex-center;
+    width: 100%;
+    max-width: 700px;
+    height: 100%;
+  }
+
   img {
     width: auto;
     max-height: 800px;
+    padding: 30px;
   }
 
   .close {
