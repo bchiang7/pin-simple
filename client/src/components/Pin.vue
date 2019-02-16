@@ -108,8 +108,12 @@ export default {
 
     svg {
       max-width: 50px;
-      fill: rgba(255,255,255,0.2);
+      fill: rgba(255,255,255,0.25);
       transition: $transition;
+
+      @include smallerThan480 {
+        fill: rgba(255,255,255,0.75);
+      }
     }
   }
 
