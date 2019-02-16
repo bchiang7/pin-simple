@@ -29,7 +29,11 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 app.use(cors());
 app.use(cookieParser());
-app.use(history());
+app.use(history({
+  disableDotRule: true,
+  verbose: true
+}));
+app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
 if (process.env.NODE_ENV !== 'production') {
   const certOptions = {
@@ -52,8 +56,8 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
-app.get('/', function(req, res) {
-  res.send('Hi from the server');
+app.get('/', function (req, res) {
+  res.render((path.resolve(__dirname, '../client/dist/index.html')));
 });
 
 const generateRandomString = function(length) {
