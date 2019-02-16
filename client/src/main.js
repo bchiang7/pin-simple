@@ -15,10 +15,6 @@ const routes = [
   },
   {
     path: '/',
-    redirect: '/boards',
-  },
-  {
-    path: '/boards',
     component: Boards,
   },
   {

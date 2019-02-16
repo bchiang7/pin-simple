@@ -10,7 +10,7 @@
         </a>
       </div>
       <div class="back">
-        <router-link to="/boards">
+        <router-link to="/">
           <BackArrow />
           <span>Back</span>
         </router-link>

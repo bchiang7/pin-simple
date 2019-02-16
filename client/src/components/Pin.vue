@@ -112,7 +112,8 @@ export default {
       transition: $transition;
 
       @include smallerThan480 {
-        fill: rgba(255,255,255,0.75);
+        max-width: 40px;
+        fill: rgba(255,255,255,0.5);
       }
     }
   }

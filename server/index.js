@@ -22,16 +22,15 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const queryString = require('query-string');
 const request = require('request');
+const history = require('connect-history-api-fallback');
 
 const app = express();
 
-// Priority serve any static files.
-app.use(express.static(path.resolve(__dirname, '../client/dist')));
-
 app
-  .use(express.static(`${__dirname}/dist`))
+  .use(express.static(path.resolve(__dirname, '../client/dist')))
   .use(cors())
-  .use(cookieParser());
+  .use(cookieParser())
+  .use(history());
 
 if (process.env.NODE_ENV !== 'production') {
   const certOptions = {
