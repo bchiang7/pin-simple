@@ -26,11 +26,10 @@ const history = require('connect-history-api-fallback');
 
 const app = express();
 
-app
-  .use(express.static(path.resolve(__dirname, '../client/dist')))
-  .use(cors())
-  .use(cookieParser())
-  .use(history());
+app.use(express.static(path.resolve(__dirname, '../client/dist')));
+app.use(cors());
+app.use(cookieParser());
+app.use(history());
 
 if (process.env.NODE_ENV !== 'production') {
   const certOptions = {
