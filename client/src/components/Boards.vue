@@ -64,31 +64,31 @@ export default {
   },
   mounted() {
     // Remove the caching logic once app gets approved
-    const cachedUser = cached('pinterest_user');
-    const cachedBoards = cached('pinterest_boards');
+    // const cachedUser = cached('pinterest_user');
+    // const cachedBoards = cached('pinterest_boards');
 
-    if (cachedUser && cachedBoards) {
-      this.user = JSON.parse(cachedUser);
-      this.boards = JSON.parse(cachedBoards);
-    } else {
-      console.warn('Getting user data');
+    // if (cachedUser && cachedBoards) {
+    //   this.user = JSON.parse(cachedUser);
+    //   this.boards = JSON.parse(cachedBoards);
+    // } else {
+    //   console.warn('Getting user data');
 
-      if (this.token) {
-        catchErrors(this.getData());
-      }
+    if (this.token) {
+      catchErrors(this.getData());
     }
+    // }
   },
   methods: {
     async getData() {
       const user = await getUser();
       this.user = user.data.data;
       // Remove this line once app gets approved
-      cache('pinterest_user', JSON.stringify(this.user));
+      // cache('pinterest_user', JSON.stringify(this.user));
 
       const boards = await getUserBoards();
       this.boards = boards.data.data;
       // Remove this line once app gets approved
-      cache('pinterest_boards', JSON.stringify(this.boards));
+      // cache('pinterest_boards', JSON.stringify(this.boards));
     },
     logoutUser() {
       logout();

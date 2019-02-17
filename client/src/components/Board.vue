@@ -59,16 +59,16 @@ export default {
   },
   mounted() {
     // Remove the caching logic once app gets approved
-    const cachedBoard = cached('pinterest_board');
-    const cachedPins = cached('pinterest_pins');
+    // const cachedBoard = cached('pinterest_board');
+    // const cachedPins = cached('pinterest_pins');
 
-    if (cachedBoard && cachedPins) {
-      this.board = JSON.parse(cachedBoard);
-      this.pins = JSON.parse(cachedPins);
-    } else {
-      console.warn(`Getting board data for ${this.$route.params.id}`);
-      catchErrors(this.getData());
-    }
+    // if (cachedBoard && cachedPins) {
+    //   this.board = JSON.parse(cachedBoard);
+    //   this.pins = JSON.parse(cachedPins);
+    // } else {
+    //   console.warn(`Getting board data for ${this.$route.params.id}`);
+    catchErrors(this.getData());
+    // }
 
     EventBus.$on('close-pin', () => this.closePin());
     EventBus.$on('prev-pin', () => this.prevPin());
@@ -81,12 +81,12 @@ export default {
       const board = await getBoard(boardID);
       this.board = board.data.data;
       // Remove this line once app gets approved
-      cache('pinterest_board', JSON.stringify(this.board));
+      // cache('pinterest_board', JSON.stringify(this.board));
 
       const pins = await getBoardPins(boardID);
       this.pins = pins.data.data;
       // Remove this line once app gets approved
-      cache('pinterest_pins', JSON.stringify(this.pins));
+      // cache('pinterest_pins', JSON.stringify(this.pins));
     },
 
     selectPin(pin) {
