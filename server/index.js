@@ -30,8 +30,11 @@ app.use(express.static(path.resolve(__dirname, '../client/dist')));
 app.use(cors());
 app.use(cookieParser());
 app.use(history({
-  disableDotRule: true,
-  verbose: true
+  verbose: true,
+  rewrites: [
+    { from: /\/login/, to: '/login'},
+    { from: /\/callback/, to: '/callback'}
+  ],
 }));
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
